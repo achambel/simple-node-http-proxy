@@ -1,7 +1,17 @@
 ### How to use it?
 
 ```bash
-$>git clone https://github.com/achambel/simple-node-http-proxy
-$>cd simple-node-http-proxy
-$>node index.js
+git clone https://github.com/achambel/simple-node-http-proxy
+
+cd simple-node-http-proxy
+
+node index.js
+```
+
+### Making a http request to the proxy
+
+It only supports http requests for now.
+
+```bash
+curl http://localhost:3000?target=http://somedomain.org
 ```
