@@ -9,8 +9,9 @@ http.createServer(onRequest).listen(3000);
 
 function onRequest(req, res) {
   try {
-    const queryString = url.parse(req.url, true).query;
-    const target = new URL(queryString.target);
+    let queryString = url.parse(req.url).search;
+    queryString = queryString.replace('?target=', '');
+    const target = new URL(decodeURIComponent(queryString));
 
     const { host } = target;
 
