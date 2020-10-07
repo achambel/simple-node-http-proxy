@@ -11,8 +11,11 @@ function onRequest(req, res) {
   try {
     const queryString = url.parse(req.url, true).query;
     const target = new URL(queryString.target);
+
+    const { host } = target;
+
     const options = {
-      headers: req.headers,
+      headers: Object.assign(req.headers, { host }),
     };
 
     const proxy = http.request(target, options, (targetResponse) => {
