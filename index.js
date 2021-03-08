@@ -24,7 +24,10 @@ function onRequest(req, res) {
       targetResponse.pipe(res, { end: true });
     });
 
-    req.pipe(proxy, { end: true });
+    req.pipe(proxy, { end: true }).on('error', (err) => {
+      res.statusCode = 500;
+      res.write(err.message);
+    });
   } catch (err) {
     console.error(err.message);
     res.statusCode = 500;
